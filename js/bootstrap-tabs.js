@@ -67,10 +67,16 @@
  /* TABS/PILLS PLUGIN DEFINITION
   * ============================ */
 
-  $.fn.tabs = $.fn.pills = function ( selector ) {
-    return this.each(function () {
-      $(this).delegate(selector || '.tabs li > a, .pills > li > a', 'click', tab)
-    })
+  $.fn.tabs = $.fn.pills = function (param1, param2) {
+      if (arguments.length == 1) {
+          return this.each(function () {
+              $(this).delegate(param1 || '.tabs li > a, .pills > li > a', 'click', tab)
+          })
+      }
+
+      if (param1 = 'select') {
+          $(this).children('li').children('a[href="#' + param2 + '"]').click();
+      }
   }
 
   $(document).ready(function () {
